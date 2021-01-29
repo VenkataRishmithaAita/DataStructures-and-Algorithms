@@ -1,0 +1,35 @@
+def quickselect(arr,low,high,k):
+    pos=partition(arr,low,high)
+    if(pos==k-1):
+        return arr[pos]
+    elif k<=pos: 
+        return quickselect(arr,low,pos-1,k)
+    else:
+        return quickselect(arr,pos+1,high,k)
+
+def partition(arr,low,high):
+    pivot=arr[high]
+    i=low 
+    for j in range(low,high):
+        if arr[j]<pivot: 
+            arr[i],arr[j]=arr[j],arr[i]
+            i+=1 
+    arr[high],arr[i]=arr[i],arr[high]
+    return i 
+
+arr=list(map(int,input().split()))
+k=int(input())
+print(quickselect(arr,0,len(arr)-1,k)) 
+
+
+'''
+input:
+    arr=1 2 6 4 3 5 9
+    k=5 
+    ouput:5 
+''' 
+
+Time Complexity:
+Best Case:O(n) 
+Average Case:O(n) 
+Worst Case:O(n^2)
