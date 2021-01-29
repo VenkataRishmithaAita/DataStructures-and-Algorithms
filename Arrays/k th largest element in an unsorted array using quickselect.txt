@@ -1,4 +1,4 @@
-def quickselect(arr,low,high,k):
+def QuickSelect(arr,low,high,k):
     pos=partition(arr,low,high)
     if(pos==k-1):
         return arr[pos]
@@ -7,7 +7,7 @@ def quickselect(arr,low,high,k):
     else:
         return quickselect(arr,pos+1,high,k)
 
-def partition(arr,low,high):
+def Partition(arr,low,high):
     pivot=arr[high]
     i=low 
     for j in range(low,high):
