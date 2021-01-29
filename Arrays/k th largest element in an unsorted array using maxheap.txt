@@ -1,0 +1,14 @@
+from heapq import heapify,heappush,heappop
+
+arr=list(map(int,input().split()))
+k=int(input())
+maxheap=[] 
+heapify(maxheap)  
+n=len(arr)
+for i in range(n): 
+    heappush(maxheap,-1*arr[i])#push elemnets into max heap 
+    if len(maxheap)>k: 
+        heappop(maxheap)  #is size of heap is greater than k then pop them 
+        
+print(-1*maxheap[0])
+    
