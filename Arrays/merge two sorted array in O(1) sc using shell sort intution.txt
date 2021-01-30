@@ -1,0 +1,33 @@
+def nextGap(gap):
+    if gap<=1:
+        return 0 
+    return (gap//2)+gap%2
+def merge(A,B): 
+    n1=len(A)
+    n2=len(B)
+    gap=n1+n2 
+    gap=nextGap(gap)
+    while gap>0:
+        i=0 
+        while i+gap<n1: 
+            if A[i]>A[i+gap]:
+                A[i],A[i+gap]=A[i+gap],A[i]
+            i+=1 
+        j=gap-n1 if gap>n1 else 0 
+        while i<n1 and j<n2: 
+            if A[i]>B[j]: 
+                A[i],B[j]=B[j],A[i]
+            i+=1 
+            j+=1 
+        if j<n2:
+            while j+gap<n2:
+                if B[j]>B[j+gap]:
+                    B[j],B[j+gap]=B[j+gap],B[j]
+                j+=1 
+        gap=nextGap(gap)
+
+A=list(map(int,input().split()))
+B=list(map(int,input().split()))
+merge(A,B)
+print(A)
+print(B)
