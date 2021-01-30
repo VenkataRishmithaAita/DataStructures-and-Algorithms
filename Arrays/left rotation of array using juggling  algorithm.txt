@@ -1,0 +1,29 @@
+def gcd(a,b): 
+    while b!=0:
+        a,b=b,a%b 
+    return a 
+
+def leftrotate(arr,d):
+    n=len(arr)
+    d=d%n 
+    gcd1=gcd(d,n)
+    for i in range(gcd1):
+        temp=arr[i]
+        j=i 
+        while(1):
+            k=j+d 
+            if k>=n:
+                k=k-n 
+            if k==i:
+                break 
+            arr[j]=arr[k]
+            j=k 
+        arr[j]=temp 
+        
+
+arr=list(map(int,input().split()))
+d=int(input()) 
+leftrotate(arr,d)
+print(arr)
+
+    

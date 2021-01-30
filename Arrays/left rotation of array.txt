@@ -1,0 +1,23 @@
+def leftrotate(arr,d):
+    n=len(arr)
+    for i in range(d): 
+        leftshift(arr,n) 
+def leftshift(arr,n):
+    temp=arr[0]
+    for i in range(n-1):
+        arr[i]=arr[i+1]
+    arr[n-1]=temp 
+
+arr=list(map(int,input().split()))
+d=int(input()) 
+leftrotate(arr,d)
+print(arr)
+ 
+'''
+arr:1 2 3 4 5 6 7
+d:2 
+output:3 4 5 6 7 1 2
+'''
+#Time Complexity:O(n*d) 
+#Space Complexity:O(1)
+    
