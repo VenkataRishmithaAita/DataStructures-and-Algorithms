@@ -1,0 +1,21 @@
+def reverse(arr,left,right):
+    while left<right: 
+        arr[left],arr[right]=arr[right],arr[left]
+        left+=1 
+        right-=1 
+
+
+def leftrotation(arr,d):
+    if d==0:
+        return
+    n=len(arr)
+    d=d%n 
+    reverse(arr,0,d-1)#reverse array upto d
+    reverse(arr,d,n-1)#then reverse array from d to n-1
+    reverse(arr,0,n-1)#at last reverse whole array
+        
+
+arr=list(map(int,input().split()))
+d=int(input())
+leftrotation(arr,d) 
+print(arr)
