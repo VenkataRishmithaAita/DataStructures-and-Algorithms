@@ -1,0 +1,50 @@
+def reverse(arr,left,right):
+    while left<right:
+        arr[left],arr[right]=arr[right],arr[left]
+        left+=1 
+        right-=1 
+
+def merge(arr,l,m,r):
+    i=l 
+    j=m+1 
+    while i<=m and arr[i]<0: #Here arr[i...m] is positive subarray
+        i+=1 
+    while j<=r and arr[j]<0: #Here arr[j...r] is positive subarray
+        j+=1 
+    #Here we are using reversal algorithm 
+    #i.e First reverse positive part of left subarray 
+    #then reverse negtaive part of right subarray then complete subarray 
+    reverse(arr,i,m)
+    reverse(arr,m+1,j-1)
+    reverse(arr,i,j-1)
+    print(arr)
+
+def rearrangePosNeg(arr,left,right):#Same as merge sort partition algorithm
+    if left<right:
+        mid=left+(right-left)//2 
+        rearrangePosNeg(arr,left,mid)
+        rearrangePosNeg(arr,mid+1,right)
+        merge(arr,left,mid,right)
+arr=list(map(int,input().split()))
+rearrangePosNeg(arr,0,len(arr)-1) 
+print()
+print(arr)
+
+'''
+Let Ln and Lp denotes the negative part and positive 
+part of left sub-array respectively. 
+Similarly, Rn and Rp denotes the negative and positive part 
+of right sub-array respectively.
+Below are the steps to convert [Ln Lp Rn Rp] to [Ln Rn Lp Rp] 
+without using extra space.
+
+1. Reverse Lp and Rn. We get [Lp] -> [Lp'] and [Rn] -> [Rn'] 
+    [Ln Lp Rn Rp] -> [Ln Lp’ Rn’ Rp]
+
+2. Reverse [Lp’ Rn’]. We get [Rn Lp].
+    [Ln Lp’ Rn’ Rp] -> [Ln Rn Lp Rp]
+
+
+Time Complexity:O(nlogn)
+Space Complexity:O(logn)
+'''
