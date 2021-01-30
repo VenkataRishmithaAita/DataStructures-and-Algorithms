@@ -1,0 +1,17 @@
+arr=list(map(int,input().split()))
+n=len(arr)
+temp=[float('inf')]*n
+temp[0]=0 
+for i in range(0,n): 
+    s=temp[i]+1 
+    for j in range(i,arr[i]+i+1):  
+        if j>=n:
+            break 
+        temp[j]=min(s,temp[j])
+print(temp[n-1])
+
+
+'''
+Time complexity:O(n^2)
+Space Complexity:O(n)
+'''
