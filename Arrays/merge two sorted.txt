@@ -1,0 +1,16 @@
+def merge(A,B):
+    i=0 
+    j=0  
+    while i<len(A) and j<len(B):
+        if B[j]<A[i]: 
+            A.insert(i,B[j]) 
+            j+=1 
+        else:
+            i+=1 
+    if j<len(B): 
+        A.extend(B[j:])
+    return A 
+A=list(map(int,input().split()))
+B=list(map(int,input().split()))
+merge(A,B)
+print(A) 
