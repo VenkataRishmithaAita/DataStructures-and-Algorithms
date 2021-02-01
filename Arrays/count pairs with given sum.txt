@@ -1,0 +1,16 @@
+A=list(map(int,input().split())) 
+sm=int(input())
+n=len(A)
+count=0 
+dict1={} 
+for i in A:
+    if i not in dict1:
+        dict1[i]=1 
+    else:
+        dict1[i]+=1 
+for i in range(n):
+    if (sm-A[i]) in dict1:
+        count=count+dict1[sm-A[i]]
+    if sm-A[i]==A[i]:
+        count-=1 
+print("no of pairs with given sum {} is {}".format(sm,count//2))
