@@ -1,0 +1,39 @@
+def count_inversions(a,n):
+    temp=[0]*n
+    return partition(a,temp,0,n-1)
+def partition(a,temp,left,right):
+    inversion_cnt=0
+    if left<right:
+        mid=left+(right-left)//2
+        inversion_cnt+=partition(a,temp,left,mid)
+        inversion_cnt+=partition(a,temp,mid+1,right)
+        inversion_cnt+=merge(a,temp,left,mid,right)
+    return inversion_cnt
+def merge(a,temp,left,mid,right):
+    i=left
+    j=mid+1
+    k=left
+    inversion_cnt=0
+    while i<=mid and j<=right:
+        if a[i]<=a[j]:
+            temp[k]=a[i]
+            k+=1
+            i+=1
+        else:
+            temp[k]=a[j]
+            inversion_cnt+=(mid-i+1)
+            k+=1
+            j+=1
+    while i<=mid:
+        temp[k]=a[i]
+        k+=1
+        i+=1
+    while j<=right:
+        temp[k]=a[j]
+        k+=1
+        j+=1
+    for i in range(left,right+1):
+        a[i]=temp[i]
+    return inversion_cnt 
+a=list(map(int,input().split()))
+print(count_inversions(a,len(a)))
