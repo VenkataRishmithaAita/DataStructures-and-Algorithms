@@ -1,0 +1,19 @@
+def subarrayWithSumZero(arr):
+    curr_sum=0 
+    s=set()
+    for i in arr:
+        curr_sum+=i 
+        if curr_sum==0 or curr_sum in s:
+            return True 
+        s.add(curr_sum)
+    return False
+
+arr=list(map(int,input().split()))
+if(subarrayWithSumZero(arr)):
+    print("Yes")
+else:
+    print("No")
+'''
+input: 4 2 -3 1 6 
+output:Yes(2 -3 1)
+'''
