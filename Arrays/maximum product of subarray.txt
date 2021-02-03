@@ -1,0 +1,24 @@
+arr=list(map(int,input().split()))
+n=len(arr)
+curr_max=1
+curr_min=1
+max_till_now=0
+flag=0
+for i in range(n):
+    if arr[i]>0:
+        curr_max=arr[i]*curr_max
+        curr_min=arr[i]*curr_min
+        flag=1
+    elif arr[i]==0:
+        curr_max=1
+        curr_min=1
+    else:
+        temp=curr_max
+        curr_max=max(curr_min*arr[i],1)
+        curr_min=temp*arr[i]
+    if max_till_now<curr_max:
+        max_till_now=curr_max
+if flag==0 or max_till_now==0:
+    print(0)
+else:
+    print(max_till_now)
